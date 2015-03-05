@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- API KEY: 7e10222e2cc1584b-->
+<html>
+	<head>
+		<title>Current Weather</title>
+		<link rel="stylesheet" type="text/css" href="360.css">
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<h1>Current Weather</h1>
+       <div class="container">
+		<div id="nav_menu">
+			<ul>
+				<li ><a href="home.html">Home</a></li>
+				<li><a href="resume.html">Resume</a></li>
+				<li id="nav_selected"><a href="">Current Weather</a></li>
+				<li><a href="forecast.html">Weather Forecast</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+       </div>
+		<div id="content" class="container">
+		  <form> 
+                Enter a City in Utah: <input class="form-control input-lg" id="cityField" type="text" value="">
+		<span id="textHint"></span>
+		<!--<br><br>
+                Suggestion: <br><br><span id="textHint">No Suggestions</span><br><br>-->
+                <input id="button" class="btn btn-default" type="submit" value="Submit">
+		  </form>
+          <br><br><p>City</p>
+          <textarea id="dispCity"  class="form-control">No City</textarea><br><br>
+          <div id="weather">No Weather</div>
+			<!--<img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"> 
+			37&deg;-->
+		</div>
+	</body>
+</html>
+
+<script>
+  $("#button").click(function(e){
+      var value = $("#cityField").val();
+      e.preventDefault();
+      $("#dispCity").text(value);
+      
+      var myurl = "https://api.wunderground.com/api/7e10222e2cc1584b/geolookup/conditions/q/Utah/";
+      myurl += value; 
+      myurl += ".json";
+      
+      $.ajax({
+        url: myurl,
+        dataType : "jsonp",
+        success : function(parsed_json) {
+            var weather_img = parsed_json['current_observation']['icon_url'];
+            var location = parsed_json['location']['city'];
+            var temp_string = parsed_json['current_observation']['temperature_string'];
+            var current_weather = parsed_json['current_observation']['weather'];
+            
+            everything = "<img src=\"" + weather_img + "\"><br>"; 
+            everything += "<ul>";
+            everything += "<li>Location: "+ location;
+            everything += "<li>Temperature: "+ temp_string;
+            everything += "<li>Weather: "+ current_weather;
+            everything += "</ul>";
+            $("#weather").html(everything);
+        }
+      });
+  });
+
+  $("#cityField").keyup(function() {
+      var jsonString = "https://students.cs.byu.edu/~clement/CS360/ajax/getcity.cgi?q=";
+      jsonString+= $("#cityField").val();
+      var everything; 
+      $.getJSON(jsonString, function(data) {
+          if(data.length > 0) {
+              everything = "<ul class='list-group'>";
+              $.each(data, function(i, item) {
+              everything += "<li class='list-group-item'> " + data[i].city + "</li>";
+              });
+          everything += "</ul>";
+          } else {
+              everything = "<ul class='list-group'><li class='list-group-item'>No Suggestions</li></ul>";
+          }
+      })
+      .done(function() { $("#textHint").html(everything); })
+      .fail(function(jqXHR, textStatus, errorThrown) {
+            $("#textHint").html("<ul class='list-group'><li class='list-group-item'>No Suggestions</li></ul>");
+        });
+  });
+</script>
