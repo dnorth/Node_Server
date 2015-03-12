@@ -24,7 +24,55 @@ http.createServer(function (request, response) {
             response.writeHead(200);
             response.end(JSON.stringify(jsonresult));
         });
-    } else {
+    } else if (urlObj.pathname.indexOf("comment") != -1) {
+	console.log("comment route");
+		//Create RUD
+		if(request.method == "POST") {
+			console.log("POST!!!");
+			var jsonData = "";
+			request.on('data', function (chunk) {
+				jsonData += chunk;
+			});
+			request.on('end', function () {
+				var reqObj = JSON.parse(jsonData);
+				console.log(reqObj);
+				console.log("Name: " + reqObj.Name);
+				console.log("Comment: " + reqObj.Comment);
+				
+				//Put the JSON in the Database
+				var MongoClient = require('mongodb').MongoClient;
+				MongoClient.connect("mongodb://localhost/weather", function(err, db) {
+					if(err) throw err;
+					db.collection('comments').insert(reqObj, function(err, records) {
+						console.log("Record added as " + records[0]._id);
+					});
+				});
+			});
+					
+		response.writeHead(200);
+		response.end("");
+		
+		} else if (request.method == "GET"){
+			console.log("GET!!");
+			
+			var MongoClient = require('mongodb').MongoClient;
+			MongoClient.connect("mongodb://localhost/weather", function(err, db) {
+				if(err) throw err;
+				
+				db.collection("comments", function(err, comments){
+					if(err) throw err;
+					comments.find(function(err, items){
+						items.toArray(function(err, itemArr){
+							console.log("Document Array: ");
+							console.log(itemArr);
+							response.writeHead(200);
+							response.end(JSON.stringify(itemArr));
+						});
+					});
+				});
+			});
+ 		}   
+    }else {
         fs.readFile(ROOT_DIR + urlObj.pathname, function(err, data) {
             if (err) {
             response.writeHead(404);
@@ -36,7 +84,7 @@ http.createServer(function (request, response) {
         });
     }
 }).listen(process.argv[2]);
-
+console.log("Server created, listening on port: " + process.argv[2]);
 /*
 var options = {
     hostname: 'localhost',

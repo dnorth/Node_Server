@@ -1,0 +1,17 @@
+{
+  "author": {
+    "name": "Danny North"
+  },
+  "name": "node.dnorth2",
+  "version": "0.1.0",
+  "description": "Basic Node.js Web Server",
+  "main": "censortext",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dnorth/Node_Server"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}

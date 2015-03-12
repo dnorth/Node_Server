@@ -1,0 +1,44 @@
+{
+  "author": {
+    "name": "Danny North"
+  },
+  "name": "node.dnorth2",
+  "version": "0.1.0",
+  "description": "Basic Node.js Web Server",
+  "main": "censortext",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dnorth/Node_Server"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "gitHead": "9f861b7565178913a1ae1c5b9182412b73f099cf",
+  "bugs": {
+    "url": "https://github.com/tgrossen/nodeserver/issues"
+  },
+  "homepage": "https://github.com/tgrossen/nodeserver",
+  "_id": "node.tgrossen@0.1.4",
+  "scripts": {},
+  "_shasum": "e5289014a976640844728c9ced636286fdde9d19",
+  "_from": "node.tgrossen@*",
+  "_npmVersion": "2.6.1",
+  "_nodeVersion": "0.10.21",
+  "_npmUser": {
+    "name": "tgrossen",
+    "email": "tgrossen@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "tgrossen",
+      "email": "tgrossen@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "e5289014a976640844728c9ced636286fdde9d19",
+    "tarball": "http://registry.npmjs.org/node.tgrossen/-/node.tgrossen-0.1.4.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/node.tgrossen/-/node.tgrossen-0.1.4.tgz"
+}

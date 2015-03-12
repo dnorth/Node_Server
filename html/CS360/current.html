@@ -15,18 +15,28 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<h1>Current Weather</h1>
-       <div class="container">
-		<div id="nav_menu">
-			<ul>
-				<li ><a href="home.html">Home</a></li>
-				<li><a href="resume.html">Resume</a></li>
-				<li id="nav_selected"><a href="">Current Weather</a></li>
-				<li><a href="forecast.html">Weather Forecast</a></li>
-				<li><a href="contact.html">Contact</a></li>
-			</ul>
+	  <nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+		  <div class="navbar-header" <!--id="nav_menu"-->>
+		    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		      <span class="sr-only">Toggle Navigation</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+		    <!--<div class="navbar-brand"> Current Weather </div>-->
+		  </div>
+		  <div id="navbar" class="collapse navbar-collapse">
+		  <ul class="nav navbar-nav">
+		    <li ><a href="home.html">Home</a></li>
+		    <li><a href="resume.html">Resume</a></li>
+		    <li id="nav_selected"><a href="">Current Weather</a></li>
+		    <li><a href="forecast.html">Weather Forecast</a></li>
+		    <li><a href="contact.html">Contact</a></li>
+		  </ul>
 		</div>
        </div>
+	  </nav>
 		<div id="content" class="container">
 		  <form> 
                 Enter a City in Utah: <input class="form-control input-lg" id="cityField" type="text" value="">
