@@ -24,33 +24,33 @@
 		      <span class="icon-bar"></span>
 		      <span class="icon-bar"></span>
 		    </button>
-		    <!--<div class="navbar-brand"> Current Weather </div>-->
 		  </div>
 		  <div id="navbar" class="collapse navbar-collapse">
-		  <ul class="nav navbar-nav">
-		    <li ><a href="home.html">Home</a></li>
-		    <li><a href="resume.html">Resume</a></li>
-		    <li id="nav_selected"><a href="">Current Weather</a></li>
-		    <li><a href="forecast.html">Weather Forecast</a></li>
-		    <li><a href="contact.html">Contact</a></li>
-		  </ul>
+		    <ul class="nav navbar-nav">
+		      <li ><a href="home.html">Home</a></li>
+		      <li><a href="resume.html">Resume</a></li>
+		      <li id="nav_selected"><a href="">Current Weather</a></li>
+		      <li><a href="forecast.html">Weather Forecast</a></li>
+		      <li><a href="contact.html">Contact</a></li>
+		    </ul>
+		  </div>
 		</div>
-       </div>
 	  </nav>
-		<div id="content" class="container">
-		  <form> 
-                Enter a City in Utah: <input class="form-control input-lg" id="cityField" type="text" value="">
-		<span id="textHint"></span>
-		<!--<br><br>
-                Suggestion: <br><br><span id="textHint">No Suggestions</span><br><br>-->
-                <input id="button" class="btn btn-default" type="submit" value="Submit">
-		  </form>
-          <br><br><p>City</p>
-          <textarea id="dispCity"  class="form-control">No City</textarea><br><br>
-          <div id="weather">No Weather</div>
-			<!--<img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"> 
-			37&deg;-->
-		</div>
+
+	  <div class="container">
+	    <form> 
+              Enter a City in Utah: <input class="form-control input-lg" id="cityField" type="text" value="">
+	      <span id="textHint"></span>
+	      <!--<br><br>
+                 Suggestion: <br><br><span id="textHint">No Suggestions</span><br><br>-->
+              <input id="button" class="btn btn-default" type="submit" value="Submit">
+	    </form>
+	    <br><br><p>City</p>
+	    <textarea id="dispCity"  class="form-control">No City</textarea><br><br>
+	    <div id="weather">No Weather</div>
+	    <!--<img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"> 
+		     37&deg;-->
+	  </div>
 	</body>
 </html>
 
@@ -85,9 +85,10 @@
   });
 
   $("#cityField").keyup(function() {
-      var jsonString = "narwhallife.com/getcity?q=";
+      var jsonString = "getcity?q=";
       jsonString+= $("#cityField").val();
       var everything; 
+      console.log(jsonString);
       $.getJSON(jsonString, function(data) {
           if(data.length > 0) {
               everything = "<ul class='list-group'>";

@@ -1,9 +1,16 @@
 /*body*/
 body
 {
+padding-top: 65px;
 font-family: arial, sans-serif;
 font-size: 14px;
 color:#386E7F;
+}
+
+@media (max-width: 979px) {
+    body {
+	padding-top: 65px;
+    }
 }
 
 h1

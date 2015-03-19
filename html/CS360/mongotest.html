@@ -4,16 +4,19 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script> 
 
     <script> 
+    var url= "http://admin:dang3rous@narwhallife.com:9001/comment";
       $(document).ready(function(){ 
-          $("button").click(function(){
+          $("#postButton").click(function(){
                var myobj = {Name:$("#Name").val(), Comment: $("#Comment").val()};
                jobj = JSON.stringify(myobj);
                $("#json").text(jobj); 
 			   
-               var url= "http://narwhallife.com:9001/comment";
                $.post(url, jobj, function(data, textStatus) {
                $("#done").html("<h3>" + textStatus + "</h3>");
                });
+
+          });
+          $("#commentButton").click(function() {
                $.getJSON(url, function(data) {
                    var everything;
                    everything = "<ul>";
@@ -22,8 +25,8 @@
 	           });
 	       everything += "</ul>";
                $("#currentComments").html(everything);
-               });
-          }); 
+               }); 
+           });
       }); 
     </script> 
   </head> 
@@ -34,10 +37,12 @@
       Comment: <input type="text" id="Comment" value="Hello"><br> 
     </form> 
 
-    <button>Serialize form values</button> 
+    <button id="postButton">Serialize form values</button> 
     
     <div id="json"></div> 
-	<div id="done"> </div><br><br>
+	<div id="done"> </div><br>
+
+	<button id="commentButton">Get Comments </button><br><br>
 	Current Comments: <br><br>
 	<div id="currentComments"></div>
    </body> 
